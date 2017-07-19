@@ -93,6 +93,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+console.log('loaded');
+
+const newTree = new __WEBPACK_IMPORTED_MODULE_0__scripts_Trie__["a" /* default */]()
+
+newTree.populate(dictionary)
+console.log(newTree)
+
+
 /***/ }),
 /* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -191,7 +199,7 @@ class Trie {
     })
   }
 }
-/* unused harmony export default */
+/* harmony export (immutable) */ __webpack_exports__["a"] = Trie;
 
 
 
