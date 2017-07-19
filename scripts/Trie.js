@@ -50,30 +50,43 @@ export default class Trie {
         const child = currentNode.children[keys[j]];
         let newString = word + child.letter;
         if (child.isWord) {
-          suggestionsArray.push(newString);
+          suggestionsArray.push({name: newString, frequency: child.frequency, timeStamp: child.timeStamp});
         }
         traverseTrie(newString, child)
       }
     }
 
     if (currentNode && currentNode.isWord) {
-      suggestionsArray.push(word)
+      suggestionsArray.push({name: word, frequency: currentNode.frequency, timeStamp: currentNode.timeStamp})
     }
 
     if (currentNode) {
       traverseTrie(word, currentNode)
     }
 
-    return suggestionsArray
+    suggestionsArray.sort((a, b) => {
+      return b.frequency - a.frequency || b.timeStamp - a.timeStamp;
+    })
+
+    return suggestionsArray.map((obj) => {
+      return obj.name
+    })
+  }
+
+  select(word) {
+    let wordsArray = [...word];
+    let currentNode = this.root;
+
+    for (let i = 0; i < wordsArray.length; i++) {
+      currentNode = currentNode.children[wordsArray[i]]
+    }
+    currentNode.frequency++
+    currentNode.timeStamp = Date.now();
   }
 
   populate(dictionary) {
     dictionary.forEach(word => {
       this.insert(word);
     })
-  }
-
-  select() {
-
   }
 }

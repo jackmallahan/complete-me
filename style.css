@@ -1,0 +1,47 @@
+body {
+  background-image: url(assets/maxresdefault.jpg);
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  height: 100vh;
+}
+
+h2 {
+  color: black;
+  font-size: 3em;
+  margin-bottom: 0;
+}
+
+input {
+  background-color: grey;
+  border: none;
+  color: black;
+  font-size: 1.7em;
+  height: 40px;
+  margin: 20px;
+  padding: 5px;
+  width: 50%;
+}
+
+input:focus,
+button:focus {
+  outline: none;
+}
+
+button {
+  background-color: grey;
+  border: none;
+  color: black;
+  font-size: 1.4em;
+  height: 40px;
+  margin: 20px;
+  transition: 0.5s;
+  width: 20%;
+}
+
+button:hover {
+  background-color: blue;
+}
