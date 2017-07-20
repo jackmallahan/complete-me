@@ -9,7 +9,7 @@ body {
   height: 100vh;
 }
 
-h2 {
+h1 {
   color: black;
   font-size: 3em;
   margin-bottom: 0;
@@ -31,17 +31,19 @@ button:focus {
   outline: none;
 }
 
-button {
+.append-section {
+  display: flex;
+  width: 50%;
+  color: black;
+}
+
+.listItems {
   background-color: grey;
   border: none;
   color: black;
-  font-size: 1.4em;
-  height: 40px;
-  margin: 20px;
+  font-size: 14px;
+  height: 30px;
+  margin: 15px;
   transition: 0.5s;
-  width: 20%;
-}
-
-button:hover {
-  background-color: blue;
+  width: 25%;
 }

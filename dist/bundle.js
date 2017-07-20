@@ -82,12 +82,39 @@ const newTree = new __WEBPACK_IMPORTED_MODULE_0__scripts_Trie__["a" /* default *
 
 newTree.populate(__WEBPACK_IMPORTED_MODULE_1__words___default.a)
 
-console.log(newTree.suggest('pizza'));
+function appendSuggestions() {
+  let userWord = __WEBPACK_IMPORTED_MODULE_2_jquery___default()('.user-input').val()
+  let suggestedWords = newTree.suggest(userWord)
+  for (let i = 0; i < 15; i++) {
+    if (userWord !== '' && suggestedWords[i] !== undefined){
 
-__WEBPACK_IMPORTED_MODULE_2_jquery___default()('.submit-btn').on('click', () => {
+    __WEBPACK_IMPORTED_MODULE_2_jquery___default()('.list').append(
+    `<button class="listItems">${suggestedWords[i]}</button>`
+    )}
+  }
+}
 
-  __WEBPACK_IMPORTED_MODULE_2_jquery___default()('.append-section').append(newTree.suggest(__WEBPACK_IMPORTED_MODULE_2_jquery___default()('.user-input').val()))
-} )
+const select = (e) => {
+  let selectedWord = e.target.innerHTML;
+
+  newTree.select(selectedWord);
+  appendSuggestions();
+}
+
+
+function clearList() {
+  __WEBPACK_IMPORTED_MODULE_2_jquery___default()('.listItems').remove()
+}
+
+__WEBPACK_IMPORTED_MODULE_2_jquery___default()('.user-input').on('keyup', () => {
+  clearList()
+  appendSuggestions()
+})
+
+__WEBPACK_IMPORTED_MODULE_2_jquery___default()('.append-section').on('click', '.listItems', function(e) {
+  clearList();
+  select(e);
+})
 
 
 /***/ }),
@@ -163,7 +190,7 @@ class Trie {
     }
 
     suggestionsArray.sort((a, b) => {
-      return b.frequency - a.frequency || b.timeStamp - a.timeStamp;
+      return b.length - a.length || b.frequency - a.frequency || b.timeStamp - a.timeStamp;
     })
 
     return suggestionsArray.map((obj) => {
