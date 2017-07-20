@@ -6,17 +6,35 @@ const newTree = new Trie()
 
 newTree.populate(words)
 
-console.log(newTree.suggest('pizza'));
+function appendSuggestions() {
+  let userWord = $('.user-input').val()
+  let suggestedWords = newTree.suggest(userWord)
+  for (let i = 0; i < 15; i++) {
+    if (userWord !== '' && suggestedWords[i] !== undefined){
 
-$('.submit-btn').on('click', () => {
-
-  $('.append-section').append(`
-
-
-    newTree.suggest($('.user-input').val())
-    `)
-} )
-
-function search() {
-  
+    $('.list').append(
+    `<button class="listItems">${suggestedWords[i]}</button>`
+    )}
+  }
 }
+
+const select = (e) => {
+  let selectedWord = e.target.innerHTML;
+  newTree.select(selectedWord);
+  appendSuggestions();
+}
+
+
+function clearList() {
+  $('.listItems').remove()
+}
+
+$('.user-input').on('keyup', () => {
+  clearList()
+  appendSuggestions()
+})
+
+$('.append-section').on('click', '.listItems', function(e) {
+  clearList();
+  select(e);
+})

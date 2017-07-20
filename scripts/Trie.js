@@ -65,7 +65,7 @@ export default class Trie {
     }
 
     suggestionsArray.sort((a, b) => {
-      return b.frequency - a.frequency || b.timeStamp - a.timeStamp;
+      return a.length - b.length || b.frequency - a.frequency || b.timeStamp - a.timeStamp;
     })
 
     return suggestionsArray.map((obj) => {
