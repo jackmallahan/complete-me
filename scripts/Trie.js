@@ -73,11 +73,11 @@ export default class Trie {
   }
 
   select(word) {
-    let wordsArray = [...word];
+    let letters = [...word];
     let currentNode = this.root;
 
-    for (let i = 0; i < wordsArray.length; i++) {
-      currentNode = currentNode.children[wordsArray[i]]
+    for (let i = 0; i < letters.length; i++) {
+      currentNode = currentNode.children[letters[i]]
     }
     currentNode.frequency++
     currentNode.timeStamp = Date.now();
@@ -85,7 +85,7 @@ export default class Trie {
 
   populate(dictionary) {
     dictionary.forEach(word => {
-      this.insert(word); 
+      this.insert(word);
     })
   }
 }
