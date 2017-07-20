@@ -6,14 +6,14 @@ export default class Trie {
     this.wordCount = 0;
   }
 
-  insert(data) {
+  insert(word) {
     const node = new Node()
 
     if (!this.root) {
       this.root = node;
     }
 
-    let letters = [...data.toLowerCase()];
+    let letters = [...word.toLowerCase()];
     let currentNode = this.root;
 
     letters.forEach(letter => {
@@ -25,7 +25,6 @@ export default class Trie {
 
     if (!currentNode.isWord) {
       currentNode.isWord = true;
-      this.value += currentNode.letter;
       this.wordCount++
     }
   }
