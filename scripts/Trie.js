@@ -85,7 +85,7 @@ export default class Trie {
 
   populate(dictionary) {
     dictionary.forEach(word => {
-      this.insert(word);
+      this.insert(word); 
     })
   }
 }
